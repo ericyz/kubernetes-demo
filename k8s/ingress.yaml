@@ -1,9 +1,0 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: demo-ingress-service
-  namespace: demo
-spec:
-  backend:
-    serviceName: demo-frontend-svc
-    servicePort: 3000
