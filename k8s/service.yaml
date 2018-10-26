@@ -1,0 +1,26 @@
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: demo
+  name: demo-backend-svc
+spec:
+  kind: ClusterIP
+  selector:
+    app: backend
+  ports:
+  - port: 5000
+    targetPort: 80
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: demo
+  name: demo-frontend-svc
+spec:
+  kind: NodePort
+  selector:
+    app: frontend
+  ports:
+  - port: 3000
+    targetPort: 3000
