@@ -2,12 +2,12 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: demo
-  name: demo-frontend-deployment
+  name: demo-backend-deployment
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
-      app: frontend
+      app: backend
   template:
     metadata:
       labels:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: k8s-demo-backend
-        image: k8s-demo-backend
+        image: k8s-demo-backend:1.0
         ports:
         - containerPort: 80
 
@@ -26,7 +26,7 @@ metadata:
   namespace: demo
   name: demo-frontend-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: frontend
@@ -37,9 +37,9 @@ spec:
     spec:
       containers:
       - name: k8s-demo-frontend
-        image: k8s-demo-frontend
+        image: k8s-demo-frontend:1.0
         ports:
         - containerPort: 80
         env:
           - name: BACKEND_ENDPOINT
-            value: demo-backend-svc
+            value: http://demo-backend-svc:5000
